@@ -1,0 +1,18 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: orders-management
+  data:
+    mongodb:
+      hast: localhost
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: example
+      database: orderDB
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true

@@ -6,15 +6,15 @@ services:
       - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_PASSWORD: example
   mongo-express:
     image: mongo-express
     restart: always
     ports:
       - 8083:8081
     environment:
-      ME_CONFIG_BASICAUTH_USERNAME: "birapcampos"  # Substitua por suas credenciais
-      ME_CONFIG_BASICAUTH_PASSWORD: "bira1234"  # Substitua por suas credenciais
+      ME_CONFIG_BASICAUTH_USERNAME: "birapcampos"
+      ME_CONFIG_BASICAUTH_PASSWORD: "bira1234"
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
-      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
