@@ -94,9 +94,10 @@ class OrderControllerTest {
                 List.of(new OrderItemResponse("1", 1780.0, 3))
         );
 
-        when(orderService.getAllOrders(null, null)).thenReturn(List.of(response));
+        when(orderService.getAllOrders(orderDateReq, null)).thenReturn(List.of(response));
 
         mockMvc.perform(get(BASE_URL)
+                        .param("orderDate", LocalDate.now().toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].orderId").value(orderId))
