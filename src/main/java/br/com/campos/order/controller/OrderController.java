@@ -53,7 +53,7 @@ public class OrderController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping
-    public ResponseEntity<List<OrderResponse>> getAllOrders(@RequestParam(required = false) String orderDate,
+    public ResponseEntity<List<OrderResponse>> getAllOrders(@RequestParam(required = true) String orderDate,
                                                             @RequestParam(required = false) String status) {
 
 
@@ -69,7 +69,7 @@ public class OrderController {
             @ApiResponse(responseCode = "500", description = "Erro interno no servidor")
     })
     @GetMapping("/summary")
-    public ResponseEntity<OrderSummaryResponse> getOrderSummary(@RequestParam(required = false) String orderDate,
+    public ResponseEntity<OrderSummaryResponse> getOrderSummary(@RequestParam(required = true) String orderDate,
                                                                 @RequestParam(required = false) String status) {
 
         LocalDate parsedDate = (orderDate != null) ? LocalDate.parse(orderDate) : null;
