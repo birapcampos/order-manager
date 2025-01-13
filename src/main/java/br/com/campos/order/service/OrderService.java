@@ -74,6 +74,10 @@ public class OrderService {
     }
 
     public List<OrderResponse> getOrdersByDateAndStatus(LocalDate orderDate, String orderStatus) {
+
+        // Assume o status COMPLETE caso não informado
+        orderStatus = orderStatus.isEmpty() ? "COMPLETE" : orderStatus;
+
         List<OrderEntity> orders = orderRepository.findByOrderDateAndStatus(orderDate, orderStatus);
         if (orders.isEmpty()) {
             throw new OrderNotFoundException("Pedido não encontrado com os parâmetros fornecidos.");
@@ -92,6 +96,10 @@ public class OrderService {
 
     public List<OrderResponse> getAllOrders(LocalDate orderDate, String status) {
         List<OrderEntity> orders;
+
+        // Assume o status COMPLETE caso não informado
+        status = status.isEmpty() ? "COMPLETE" : status;
+
         if (orderDate != null && status != null) {
             orders = orderRepository.findByOrderDateAndStatus(orderDate, status);
         } else if (orderDate != null) {
@@ -107,8 +115,12 @@ public class OrderService {
     }
 
     public OrderSummaryResponse getResumeOrdersInfo(LocalDate orderDate, String status) {
-        List<OrderEntity> orders = orderRepository.findByOrderDateAndStatus(orderDate, status);
 
+
+        // Assume o status COMPLETE caso não informado
+        status = status.isEmpty() ? "COMPLETE" : status;
+
+        List<OrderEntity> orders = orderRepository.findByOrderDateAndStatus(orderDate, status);
 
         Double totalGeral = orders.stream()
                 .mapToDouble(OrderEntity::getOrderAmount)
